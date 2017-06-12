@@ -1,0 +1,50 @@
+--- 
+GENERATOR: 
+  PackageName: hyperscan
+  PackageDescription: "Package hyperscan provides Go bindings for 01org/hyperscan high-performance regular expression matching library."
+  FlagGroups:
+    - {name: CFLAGS, flags: ["-I${SRCDIR}/include"]}
+    - {name: LDFLAGS, flags: ["-lhs", "-lc++"]}
+  Includes:
+    - hs/hs.h
+    - hs/hs_common.h
+    - hs/hs_compile.h
+    - hs/hs_runtime.h
+
+PARSER: 
+  IncludePaths: 
+    - include/hs
+    - /usr/include
+  SourcesPaths:
+    - hs.h
+    - hs_common.h
+    - hs_common.h
+    - hs_runtime.h
+
+TRANSLATOR: 
+  ConstRules: 
+    defines: expand # eval, cgo, expand
+    enums: expand
+  # PtrTips:
+  Rules: 
+    global: 
+      - {action: accept, from: "^HS_"}
+      - {action: accept, from: "^hs_"}
+    function:
+      - {action: replace, from: "^HS_"}
+      - {action: replace, from: "^hs_"}
+    type: 
+      - {action: accept, from: "match_event_handler"}
+      - {action: replace, from: "^hs_"}
+      - {action: replace, from: "_t$"}
+      - {transform: export}
+    const:
+      - {action: replace, from: "^HS_"}
+      - {transform: lower}
+    private:
+      - {transform: unexport}
+    post-global: 
+      - {transform: export}
+      - {action: doc, from: "^*"}
+      - {action: replace, from: _$}
+      - {load: snakecase}
