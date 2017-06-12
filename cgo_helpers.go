@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// WARNING: This file has automatically been generated on Mon, 12 Jun 2017 15:00:10 JST.
+// WARNING: This file has automatically been generated on Mon, 12 Jun 2017 17:47:08 JST.
 // By https://git.io/c-for-go. DO NOT EDIT.
 
 package hyperscan
@@ -723,160 +723,6 @@ type stringHeader struct {
 	Len  int
 }
 
-const sizeOfPtr = unsafe.Sizeof(&struct{}{})
-
-// unpackArgSPlatformInfo transforms a sliced Go data structure into plain C format.
-func unpackArgSPlatformInfo(x []PlatformInfo) (unpacked *C.hs_platform_info_t, allocs *cgoAllocMap) {
-	if x == nil {
-		return nil, nil
-	}
-	allocs = new(cgoAllocMap)
-	defer runtime.SetFinalizer(&unpacked, func(**C.hs_platform_info_t) {
-		go allocs.Free()
-	})
-
-	len0 := len(x)
-	mem0 := allocPlatformInfoMemory(len0)
-	allocs.Add(mem0)
-	h0 := &sliceHeader{
-		Data: uintptr(mem0),
-		Cap:  len0,
-		Len:  len0,
-	}
-	v0 := *(*[]C.hs_platform_info_t)(unsafe.Pointer(h0))
-	for i0 := range x {
-		v0[i0], _ = x[i0].PassValue()
-	}
-	h := (*sliceHeader)(unsafe.Pointer(&v0))
-	unpacked = (*C.hs_platform_info_t)(unsafe.Pointer(h.Data))
-	return
-}
-
-// packSPlatformInfo reads sliced Go data structure out from plain C format.
-func packSPlatformInfo(v []PlatformInfo, ptr0 *C.hs_platform_info_t) {
-	const m = 0x7fffffff
-	for i0 := range v {
-		ptr1 := (*(*[m / sizeOfPlatformInfoValue]C.hs_platform_info_t)(unsafe.Pointer(ptr0)))[i0]
-		v[i0] = *NewPlatformInfoRef(unsafe.Pointer(&ptr1))
-	}
-}
-
-// allocPDatabaseMemory allocates memory for type *C.hs_database_t in C.
-// The caller is responsible for freeing the this memory via C.free.
-func allocPDatabaseMemory(n int) unsafe.Pointer {
-	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfPDatabaseValue))
-	if err != nil {
-		panic("memory alloc error: " + err.Error())
-	}
-	return mem
-}
-
-const sizeOfPDatabaseValue = unsafe.Sizeof([1]*C.hs_database_t{})
-
-// unpackArgSSDatabase transforms a sliced Go data structure into plain C format.
-func unpackArgSSDatabase(x [][]Database) (unpacked **C.hs_database_t, allocs *cgoAllocMap) {
-	if x == nil {
-		return nil, nil
-	}
-	allocs = new(cgoAllocMap)
-	defer runtime.SetFinalizer(&unpacked, func(***C.hs_database_t) {
-		go allocs.Free()
-	})
-
-	len0 := len(x)
-	mem0 := allocPDatabaseMemory(len0)
-	allocs.Add(mem0)
-	h0 := &sliceHeader{
-		Data: uintptr(mem0),
-		Cap:  len0,
-		Len:  len0,
-	}
-	v0 := *(*[]*C.hs_database_t)(unsafe.Pointer(h0))
-	for i0 := range x {
-		h := (*sliceHeader)(unsafe.Pointer(&x[i0]))
-		v0[i0] = (*C.hs_database_t)(unsafe.Pointer(h.Data))
-	}
-	h := (*sliceHeader)(unsafe.Pointer(&v0))
-	unpacked = (**C.hs_database_t)(unsafe.Pointer(h.Data))
-	return
-}
-
-// packSSDatabase reads sliced Go data structure out from plain C format.
-func packSSDatabase(v [][]Database, ptr0 **C.hs_database_t) {
-	const m = 0x7fffffff
-	for i0 := range v {
-		ptr1 := (*(*[m / sizeOfPtr]*C.hs_database_t)(unsafe.Pointer(ptr0)))[i0]
-		hxf95e7c8 := (*sliceHeader)(unsafe.Pointer(&v[i0]))
-		hxf95e7c8.Data = uintptr(unsafe.Pointer(ptr1))
-		hxf95e7c8.Cap = 0x7fffffff
-		// hxf95e7c8.Len = ?
-	}
-}
-
-// allocPCompileErrorMemory allocates memory for type *C.hs_compile_error_t in C.
-// The caller is responsible for freeing the this memory via C.free.
-func allocPCompileErrorMemory(n int) unsafe.Pointer {
-	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfPCompileErrorValue))
-	if err != nil {
-		panic("memory alloc error: " + err.Error())
-	}
-	return mem
-}
-
-const sizeOfPCompileErrorValue = unsafe.Sizeof([1]*C.hs_compile_error_t{})
-
-// unpackArgSSCompileError transforms a sliced Go data structure into plain C format.
-func unpackArgSSCompileError(x [][]CompileError) (unpacked **C.hs_compile_error_t, allocs *cgoAllocMap) {
-	if x == nil {
-		return nil, nil
-	}
-	allocs = new(cgoAllocMap)
-	defer runtime.SetFinalizer(&unpacked, func(***C.hs_compile_error_t) {
-		go allocs.Free()
-	})
-
-	len0 := len(x)
-	mem0 := allocPCompileErrorMemory(len0)
-	allocs.Add(mem0)
-	h0 := &sliceHeader{
-		Data: uintptr(mem0),
-		Cap:  len0,
-		Len:  len0,
-	}
-	v0 := *(*[]*C.hs_compile_error_t)(unsafe.Pointer(h0))
-	for i0 := range x {
-		len1 := len(x[i0])
-		mem1 := allocCompileErrorMemory(len1)
-		allocs.Add(mem1)
-		h1 := &sliceHeader{
-			Data: uintptr(mem1),
-			Cap:  len1,
-			Len:  len1,
-		}
-		v1 := *(*[]C.hs_compile_error_t)(unsafe.Pointer(h1))
-		for i1 := range x[i0] {
-			v1[i1], _ = x[i0][i1].PassValue()
-		}
-		h := (*sliceHeader)(unsafe.Pointer(&v1))
-		v0[i0] = (*C.hs_compile_error_t)(unsafe.Pointer(h.Data))
-	}
-	h := (*sliceHeader)(unsafe.Pointer(&v0))
-	unpacked = (**C.hs_compile_error_t)(unsafe.Pointer(h.Data))
-	return
-}
-
-// packSSCompileError reads sliced Go data structure out from plain C format.
-func packSSCompileError(v [][]CompileError, ptr0 **C.hs_compile_error_t) {
-	const m = 0x7fffffff
-	for i0 := range v {
-		ptr1 := (*(*[m / sizeOfPtr]*C.hs_compile_error_t)(unsafe.Pointer(ptr0)))[i0]
-		for i1 := range v[i0] {
-			ptr2 := (*(*[m / sizeOfCompileErrorValue]C.hs_compile_error_t)(unsafe.Pointer(ptr1)))[i1]
-			v[i0][i1] = *NewCompileErrorRef(unsafe.Pointer(&ptr2))
-		}
-	}
-}
-
 // allocPCharMemory allocates memory for type *C.char in C.
 // The caller is responsible for freeing the this memory via C.free.
 func allocPCharMemory(n int) unsafe.Pointer {
@@ -888,6 +734,8 @@ func allocPCharMemory(n int) unsafe.Pointer {
 }
 
 const sizeOfPCharValue = unsafe.Sizeof([1]*C.char{})
+
+const sizeOfPtr = unsafe.Sizeof(&struct{}{})
 
 // unpackArgSString transforms a sliced Go data structure into plain C format.
 func unpackArgSString(x []string) (unpacked **C.char, allocs *cgoAllocMap) {
@@ -950,6 +798,42 @@ func (raw RawString) Copy() string {
 	return C.GoStringN((*C.char)(unsafe.Pointer(h.Data)), C.int(h.Len))
 }
 
+// unpackArgSPlatformInfo transforms a sliced Go data structure into plain C format.
+func unpackArgSPlatformInfo(x []PlatformInfo) (unpacked *C.hs_platform_info_t, allocs *cgoAllocMap) {
+	if x == nil {
+		return nil, nil
+	}
+	allocs = new(cgoAllocMap)
+	defer runtime.SetFinalizer(&unpacked, func(**C.hs_platform_info_t) {
+		go allocs.Free()
+	})
+
+	len0 := len(x)
+	mem0 := allocPlatformInfoMemory(len0)
+	allocs.Add(mem0)
+	h0 := &sliceHeader{
+		Data: uintptr(mem0),
+		Cap:  len0,
+		Len:  len0,
+	}
+	v0 := *(*[]C.hs_platform_info_t)(unsafe.Pointer(h0))
+	for i0 := range x {
+		v0[i0], _ = x[i0].PassValue()
+	}
+	h := (*sliceHeader)(unsafe.Pointer(&v0))
+	unpacked = (*C.hs_platform_info_t)(unsafe.Pointer(h.Data))
+	return
+}
+
+// packSPlatformInfo reads sliced Go data structure out from plain C format.
+func packSPlatformInfo(v []PlatformInfo, ptr0 *C.hs_platform_info_t) {
+	const m = 0x7fffffff
+	for i0 := range v {
+		ptr1 := (*(*[m / sizeOfPlatformInfoValue]C.hs_platform_info_t)(unsafe.Pointer(ptr0)))[i0]
+		v[i0] = *NewPlatformInfoRef(unsafe.Pointer(&ptr1))
+	}
+}
+
 // allocPExprExtMemory allocates memory for type *C.hs_expr_ext_t in C.
 // The caller is responsible for freeing the this memory via C.free.
 func allocPExprExtMemory(n int) unsafe.Pointer {
@@ -962,8 +846,8 @@ func allocPExprExtMemory(n int) unsafe.Pointer {
 
 const sizeOfPExprExtValue = unsafe.Sizeof([1]*C.hs_expr_ext_t{})
 
-// unpackArgSSExprExt transforms a sliced Go data structure into plain C format.
-func unpackArgSSExprExt(x [][]ExprExt) (unpacked **C.hs_expr_ext_t, allocs *cgoAllocMap) {
+// unpackArgSPExprExt transforms a sliced Go data structure into plain C format.
+func unpackArgSPExprExt(x []*ExprExt) (unpacked **C.hs_expr_ext_t, allocs *cgoAllocMap) {
 	if x == nil {
 		return nil, nil
 	}
@@ -982,171 +866,19 @@ func unpackArgSSExprExt(x [][]ExprExt) (unpacked **C.hs_expr_ext_t, allocs *cgoA
 	}
 	v0 := *(*[]*C.hs_expr_ext_t)(unsafe.Pointer(h0))
 	for i0 := range x {
-		len1 := len(x[i0])
-		mem1 := allocExprExtMemory(len1)
-		allocs.Add(mem1)
-		h1 := &sliceHeader{
-			Data: uintptr(mem1),
-			Cap:  len1,
-			Len:  len1,
-		}
-		v1 := *(*[]C.hs_expr_ext_t)(unsafe.Pointer(h1))
-		for i1 := range x[i0] {
-			v1[i1], _ = x[i0][i1].PassValue()
-		}
-		h := (*sliceHeader)(unsafe.Pointer(&v1))
-		v0[i0] = (*C.hs_expr_ext_t)(unsafe.Pointer(h.Data))
+		v0[i0], _ = x[i0].PassRef()
 	}
 	h := (*sliceHeader)(unsafe.Pointer(&v0))
 	unpacked = (**C.hs_expr_ext_t)(unsafe.Pointer(h.Data))
 	return
 }
 
-// packSSExprExt reads sliced Go data structure out from plain C format.
-func packSSExprExt(v [][]ExprExt, ptr0 **C.hs_expr_ext_t) {
+// packSPExprExt reads sliced Go data structure out from plain C format.
+func packSPExprExt(v []*ExprExt, ptr0 **C.hs_expr_ext_t) {
 	const m = 0x7fffffff
 	for i0 := range v {
 		ptr1 := (*(*[m / sizeOfPtr]*C.hs_expr_ext_t)(unsafe.Pointer(ptr0)))[i0]
-		for i1 := range v[i0] {
-			ptr2 := (*(*[m / sizeOfExprExtValue]C.hs_expr_ext_t)(unsafe.Pointer(ptr1)))[i1]
-			v[i0][i1] = *NewExprExtRef(unsafe.Pointer(&ptr2))
-		}
-	}
-}
-
-// unpackArgSCompileError transforms a sliced Go data structure into plain C format.
-func unpackArgSCompileError(x []CompileError) (unpacked *C.hs_compile_error_t, allocs *cgoAllocMap) {
-	if x == nil {
-		return nil, nil
-	}
-	allocs = new(cgoAllocMap)
-	defer runtime.SetFinalizer(&unpacked, func(**C.hs_compile_error_t) {
-		go allocs.Free()
-	})
-
-	len0 := len(x)
-	mem0 := allocCompileErrorMemory(len0)
-	allocs.Add(mem0)
-	h0 := &sliceHeader{
-		Data: uintptr(mem0),
-		Cap:  len0,
-		Len:  len0,
-	}
-	v0 := *(*[]C.hs_compile_error_t)(unsafe.Pointer(h0))
-	for i0 := range x {
-		v0[i0], _ = x[i0].PassValue()
-	}
-	h := (*sliceHeader)(unsafe.Pointer(&v0))
-	unpacked = (*C.hs_compile_error_t)(unsafe.Pointer(h.Data))
-	return
-}
-
-// packSCompileError reads sliced Go data structure out from plain C format.
-func packSCompileError(v []CompileError, ptr0 *C.hs_compile_error_t) {
-	const m = 0x7fffffff
-	for i0 := range v {
-		ptr1 := (*(*[m / sizeOfCompileErrorValue]C.hs_compile_error_t)(unsafe.Pointer(ptr0)))[i0]
-		v[i0] = *NewCompileErrorRef(unsafe.Pointer(&ptr1))
-	}
-}
-
-// allocPExprInfoMemory allocates memory for type *C.hs_expr_info_t in C.
-// The caller is responsible for freeing the this memory via C.free.
-func allocPExprInfoMemory(n int) unsafe.Pointer {
-	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfPExprInfoValue))
-	if err != nil {
-		panic("memory alloc error: " + err.Error())
-	}
-	return mem
-}
-
-const sizeOfPExprInfoValue = unsafe.Sizeof([1]*C.hs_expr_info_t{})
-
-// unpackArgSSExprInfo transforms a sliced Go data structure into plain C format.
-func unpackArgSSExprInfo(x [][]ExprInfo) (unpacked **C.hs_expr_info_t, allocs *cgoAllocMap) {
-	if x == nil {
-		return nil, nil
-	}
-	allocs = new(cgoAllocMap)
-	defer runtime.SetFinalizer(&unpacked, func(***C.hs_expr_info_t) {
-		go allocs.Free()
-	})
-
-	len0 := len(x)
-	mem0 := allocPExprInfoMemory(len0)
-	allocs.Add(mem0)
-	h0 := &sliceHeader{
-		Data: uintptr(mem0),
-		Cap:  len0,
-		Len:  len0,
-	}
-	v0 := *(*[]*C.hs_expr_info_t)(unsafe.Pointer(h0))
-	for i0 := range x {
-		len1 := len(x[i0])
-		mem1 := allocExprInfoMemory(len1)
-		allocs.Add(mem1)
-		h1 := &sliceHeader{
-			Data: uintptr(mem1),
-			Cap:  len1,
-			Len:  len1,
-		}
-		v1 := *(*[]C.hs_expr_info_t)(unsafe.Pointer(h1))
-		for i1 := range x[i0] {
-			v1[i1], _ = x[i0][i1].PassValue()
-		}
-		h := (*sliceHeader)(unsafe.Pointer(&v1))
-		v0[i0] = (*C.hs_expr_info_t)(unsafe.Pointer(h.Data))
-	}
-	h := (*sliceHeader)(unsafe.Pointer(&v0))
-	unpacked = (**C.hs_expr_info_t)(unsafe.Pointer(h.Data))
-	return
-}
-
-// packSSExprInfo reads sliced Go data structure out from plain C format.
-func packSSExprInfo(v [][]ExprInfo, ptr0 **C.hs_expr_info_t) {
-	const m = 0x7fffffff
-	for i0 := range v {
-		ptr1 := (*(*[m / sizeOfPtr]*C.hs_expr_info_t)(unsafe.Pointer(ptr0)))[i0]
-		for i1 := range v[i0] {
-			ptr2 := (*(*[m / sizeOfExprInfoValue]C.hs_expr_info_t)(unsafe.Pointer(ptr1)))[i1]
-			v[i0][i1] = *NewExprInfoRef(unsafe.Pointer(&ptr2))
-		}
-	}
-}
-
-// unpackArgSExprExt transforms a sliced Go data structure into plain C format.
-func unpackArgSExprExt(x []ExprExt) (unpacked *C.hs_expr_ext_t, allocs *cgoAllocMap) {
-	if x == nil {
-		return nil, nil
-	}
-	allocs = new(cgoAllocMap)
-	defer runtime.SetFinalizer(&unpacked, func(**C.hs_expr_ext_t) {
-		go allocs.Free()
-	})
-
-	len0 := len(x)
-	mem0 := allocExprExtMemory(len0)
-	allocs.Add(mem0)
-	h0 := &sliceHeader{
-		Data: uintptr(mem0),
-		Cap:  len0,
-		Len:  len0,
-	}
-	v0 := *(*[]C.hs_expr_ext_t)(unsafe.Pointer(h0))
-	for i0 := range x {
-		v0[i0], _ = x[i0].PassValue()
-	}
-	h := (*sliceHeader)(unsafe.Pointer(&v0))
-	unpacked = (*C.hs_expr_ext_t)(unsafe.Pointer(h.Data))
-	return
-}
-
-// packSExprExt reads sliced Go data structure out from plain C format.
-func packSExprExt(v []ExprExt, ptr0 *C.hs_expr_ext_t) {
-	const m = 0x7fffffff
-	for i0 := range v {
-		ptr1 := (*(*[m / sizeOfExprExtValue]C.hs_expr_ext_t)(unsafe.Pointer(ptr0)))[i0]
-		v[i0] = *NewExprExtRef(unsafe.Pointer(&ptr1))
+		v[i0] = NewExprExtRef(unsafe.Pointer(ptr1))
 	}
 }
 
@@ -1183,113 +915,9 @@ func packSSByte(v [][]byte, ptr0 **C.char) {
 	const m = 0x7fffffff
 	for i0 := range v {
 		ptr1 := (*(*[m / sizeOfPtr]*C.char)(unsafe.Pointer(ptr0)))[i0]
-		hxfa9955c := (*sliceHeader)(unsafe.Pointer(&v[i0]))
-		hxfa9955c.Data = uintptr(unsafe.Pointer(ptr1))
-		hxfa9955c.Cap = 0x7fffffff
-		// hxfa9955c.Len = ?
-	}
-}
-
-// allocPStreamMemory allocates memory for type *C.hs_stream_t in C.
-// The caller is responsible for freeing the this memory via C.free.
-func allocPStreamMemory(n int) unsafe.Pointer {
-	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfPStreamValue))
-	if err != nil {
-		panic("memory alloc error: " + err.Error())
-	}
-	return mem
-}
-
-const sizeOfPStreamValue = unsafe.Sizeof([1]*C.hs_stream_t{})
-
-// unpackArgSSStream transforms a sliced Go data structure into plain C format.
-func unpackArgSSStream(x [][]Stream) (unpacked **C.hs_stream_t, allocs *cgoAllocMap) {
-	if x == nil {
-		return nil, nil
-	}
-	allocs = new(cgoAllocMap)
-	defer runtime.SetFinalizer(&unpacked, func(***C.hs_stream_t) {
-		go allocs.Free()
-	})
-
-	len0 := len(x)
-	mem0 := allocPStreamMemory(len0)
-	allocs.Add(mem0)
-	h0 := &sliceHeader{
-		Data: uintptr(mem0),
-		Cap:  len0,
-		Len:  len0,
-	}
-	v0 := *(*[]*C.hs_stream_t)(unsafe.Pointer(h0))
-	for i0 := range x {
-		h := (*sliceHeader)(unsafe.Pointer(&x[i0]))
-		v0[i0] = (*C.hs_stream_t)(unsafe.Pointer(h.Data))
-	}
-	h := (*sliceHeader)(unsafe.Pointer(&v0))
-	unpacked = (**C.hs_stream_t)(unsafe.Pointer(h.Data))
-	return
-}
-
-// packSSStream reads sliced Go data structure out from plain C format.
-func packSSStream(v [][]Stream, ptr0 **C.hs_stream_t) {
-	const m = 0x7fffffff
-	for i0 := range v {
-		ptr1 := (*(*[m / sizeOfPtr]*C.hs_stream_t)(unsafe.Pointer(ptr0)))[i0]
-		hxf69fe70 := (*sliceHeader)(unsafe.Pointer(&v[i0]))
-		hxf69fe70.Data = uintptr(unsafe.Pointer(ptr1))
-		hxf69fe70.Cap = 0x7fffffff
-		// hxf69fe70.Len = ?
-	}
-}
-
-// allocPScratchMemory allocates memory for type *C.hs_scratch_t in C.
-// The caller is responsible for freeing the this memory via C.free.
-func allocPScratchMemory(n int) unsafe.Pointer {
-	mem, err := C.calloc(C.size_t(n), (C.size_t)(sizeOfPScratchValue))
-	if err != nil {
-		panic("memory alloc error: " + err.Error())
-	}
-	return mem
-}
-
-const sizeOfPScratchValue = unsafe.Sizeof([1]*C.hs_scratch_t{})
-
-// unpackArgSSScratch transforms a sliced Go data structure into plain C format.
-func unpackArgSSScratch(x [][]Scratch) (unpacked **C.hs_scratch_t, allocs *cgoAllocMap) {
-	if x == nil {
-		return nil, nil
-	}
-	allocs = new(cgoAllocMap)
-	defer runtime.SetFinalizer(&unpacked, func(***C.hs_scratch_t) {
-		go allocs.Free()
-	})
-
-	len0 := len(x)
-	mem0 := allocPScratchMemory(len0)
-	allocs.Add(mem0)
-	h0 := &sliceHeader{
-		Data: uintptr(mem0),
-		Cap:  len0,
-		Len:  len0,
-	}
-	v0 := *(*[]*C.hs_scratch_t)(unsafe.Pointer(h0))
-	for i0 := range x {
-		h := (*sliceHeader)(unsafe.Pointer(&x[i0]))
-		v0[i0] = (*C.hs_scratch_t)(unsafe.Pointer(h.Data))
-	}
-	h := (*sliceHeader)(unsafe.Pointer(&v0))
-	unpacked = (**C.hs_scratch_t)(unsafe.Pointer(h.Data))
-	return
-}
-
-// packSSScratch reads sliced Go data structure out from plain C format.
-func packSSScratch(v [][]Scratch, ptr0 **C.hs_scratch_t) {
-	const m = 0x7fffffff
-	for i0 := range v {
-		ptr1 := (*(*[m / sizeOfPtr]*C.hs_scratch_t)(unsafe.Pointer(ptr0)))[i0]
-		hxf3b8dbd := (*sliceHeader)(unsafe.Pointer(&v[i0]))
-		hxf3b8dbd.Data = uintptr(unsafe.Pointer(ptr1))
-		hxf3b8dbd.Cap = 0x7fffffff
-		// hxf3b8dbd.Len = ?
+		hxf95e7c8 := (*sliceHeader)(unsafe.Pointer(&v[i0]))
+		hxf95e7c8.Data = uintptr(unsafe.Pointer(ptr1))
+		hxf95e7c8.Cap = 0x7fffffff
+		// hxf95e7c8.Len = ?
 	}
 }

@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// WARNING: This file has automatically been generated on Mon, 12 Jun 2017 15:00:10 JST.
+// WARNING: This file has automatically been generated on Mon, 12 Jun 2017 17:47:08 JST.
 // By https://git.io/c-for-go. DO NOT EDIT.
 
 #include "_cgo_export.h"
