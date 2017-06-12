@@ -2,6 +2,7 @@
 GENERATOR: 
   PackageName: hyperscan
   PackageDescription: "Package hyperscan provides Go bindings for 01org/hyperscan high-performance regular expression matching library."
+  PackageLicense: "Copyright 2017 The go-hyperscan Authors. All rights reserved.\nUse of this source code is governed by a BSD-style\nlicense that can be found in the LICENSE file."
   FlagGroups:
     - {name: CFLAGS, flags: ["-I${SRCDIR}/include"]}
     - {name: LDFLAGS, flags: ["-lhs", "-lc++"]}
@@ -25,7 +26,30 @@ TRANSLATOR:
   ConstRules: 
     defines: expand # eval, cgo, expand
     enums: expand
-  # PtrTips:
+  PtrTips:
+    function:
+      - {target: ^hs_compile$, tips: [0, 0, 0, sref, sref, sref]}
+      - {target: ^hs_compile_multi$, tips: [0, 0, 0, size, size, arr, sref, sref]}
+      - {target: ^hs_compile_ext_multi$, tips: [0, 0, 0, ref, size, size, ref, sref, sref]}
+      - {target: ^hs_free_compile_error$, tips: [ref]}
+      - {target: ^hs_expression_info$, tips: [0, size, sref, sref]}
+      - {target: ^hs_expression_ext_info$, tips: [0, size, ref, sref, sref]}
+      - {target: ^hs_populate_platform$, tips: [ref]}
+      - {target: ^hs_free_database$, tips: [ref]}
+      - {target: ^hs_serialize_database$, tips: [ref, arr, arr]}
+      - {target: ^hs_deserialize_database$, tips: [arr, arr, ref]}
+      - {target: ^hs_deserialize_database_at$, tips: [arr, arr, ref]}
+      - {target: size$, tips: [ref, arr]}
+      - {target: ^hs_database_info$, tips: [ref, arr]}
+      - {target: ^hs_open_stream$, tips: [ref, arr, ref]}
+      - {target: ^hs_scan_stream$, tips: [ref, 0, 0, 0, ref, 0, 0]}
+      - {target: ^hs_close_stream$, tips: [ref, ref, 0, 0]}
+      - {target: ^hs_reset_stream$, tips: [ref, 0, ref, 0, 0]}
+      - {target: ^hs_copy_stream$, tips: [ref, ref]}
+      - {target: ^hs_reset_and_copy_stream$, tips: [ref, ref, ref, 0, 0]}
+      - {target: ^hs_scan$, tips: [ref, 0, 0, 0, ref, 0, 0]}
+      - {target: ^hs_scan_vector$, tips: [ref, 0, 0, 0, 0, ref, 0, 0]}
+      - {target: scratch$, tips: [ref, ref]}
   Rules: 
     global: 
       - {action: accept, from: "^HS_"}
